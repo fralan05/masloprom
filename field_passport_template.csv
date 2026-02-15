@@ -1,0 +1,28 @@
+code,section,label,type,required,source,validation,example,placeholder
+contract.number,contract,Номер договора,string,yes,manual,"pattern ^[A-Za-zА-Яа-я0-9\-/]{1,50}$",DOG-2026-001,{{contract.number}}
+contract.date,contract,Дата договора,date,yes,manual,format YYYY-MM-DD,2026-02-15,{{contract.date}}
+payment.form,deal,Форма оплаты,enum,yes,manual,prepay|postpay|installments,prepay,{{payment.form}}
+deal.amount,deal,Сумма сделки,decimal,yes,manual,>0 precision=2,125000.00,{{deal.amount}}
+deal.currency,deal,Валюта,enum,yes,manual,RUB|USD|EUR,RUB,{{deal.currency}}
+deal.subject,deal,Предмет договора,string,yes,manual,max_length=500,Поставка оборудования,{{deal.subject}}
+seller.name_full,seller,Полное наименование продавца,string,yes,profile,max_length=300,"ООО Ромашка",{{seller.name_full}}
+seller.inn,seller,ИНН продавца,string,yes,profile,digits 10|12,7701234567,{{seller.inn}}
+seller.kpp,seller,КПП продавца,string,no,profile,digits 9,770101001,{{seller.kpp}}
+seller.ogrn,seller,ОГРН продавца,string,yes,profile,digits 13,1027700132195,{{seller.ogrn}}
+seller.bank_name,seller,Банк продавца,string,yes,profile,max_length=200,ПАО Сбербанк,{{seller.bank_name}}
+seller.bik,seller,БИК продавца,string,yes,profile,digits 9,044525225,{{seller.bik}}
+seller.account,seller,Расчетный счет продавца,string,yes,profile,digits 20,40702810900000000001,{{seller.account}}
+seller.corr_account,seller,Корреспондентский счет продавца,string,yes,profile,digits 20,30101810400000000225,{{seller.corr_account}}
+seller.legal_address,seller,Юридический адрес продавца,string,yes,profile,max_length=500,"125009, г. Москва, ул. Тверская, д. 1",{{seller.legal_address}}
+client.type,client,Тип клиента,enum,yes,ocr_or_manual,ooo|ip|fl,ooo,{{client.type}}
+client.name_full,client,Полное наименование клиента,string,yes,ocr_or_manual,max_length=300,"ООО Альфа",{{client.name_full}}
+client.inn,client,ИНН клиента,string,yes,ocr_or_manual,digits 10|12,7707654321,{{client.inn}}
+client.kpp,client,КПП клиента,string,no,ocr_or_manual,digits 9; required_if client.type=ooo,770701001,{{client.kpp}}
+client.ogrn_or_ogrnip,client,ОГРН/ОГРНИП клиента,string,yes,ocr_or_manual,digits 13|15,1157746000001,{{client.ogrn_or_ogrnip}}
+client.bank_name,client,Банк клиента,string,yes,ocr_or_manual,max_length=200,АО Т-Банк,{{client.bank_name}}
+client.bik,client,БИК клиента,string,yes,ocr_or_manual,digits 9,044525974,{{client.bik}}
+client.account,client,Расчетный счет клиента,string,yes,ocr_or_manual,digits 20,40702810400000001234,{{client.account}}
+client.corr_account,client,Корреспондентский счет клиента,string,yes,ocr_or_manual,digits 20,30101810145250000974,{{client.corr_account}}
+client.legal_address,client,Юридический адрес клиента,string,yes,ocr_or_manual,max_length=500,"190000, г. Санкт-Петербург, Невский пр., д. 10",{{client.legal_address}}
+client.signer_fio,client,ФИО подписанта клиента,string,yes,manual,max_length=200,Иванов Иван Иванович,{{client.signer_fio}}
+client.signer_basis,client,Основание подписания,string,yes,manual,max_length=300,действует на основании Устава,{{client.signer_basis}}

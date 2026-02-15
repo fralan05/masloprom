@@ -1,0 +1,370 @@
+{
+  "schema_version": "1.0",
+  "placeholders_format": "{{path.to.field}}",
+  "sections": {
+    "contract": [
+      {
+        "id": "contract.number",
+        "section": "contract",
+        "label": "Номер договора",
+        "type": "string",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "pattern": "^[A-Za-zА-Яа-я0-9\\-\\/]{1,50}$"
+        },
+        "example": "DOG-2026-001",
+        "placeholder": "{{contract.number}}"
+      },
+      {
+        "id": "contract.date",
+        "section": "contract",
+        "label": "Дата договора",
+        "type": "date",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "format": "YYYY-MM-DD"
+        },
+        "example": "2026-02-15",
+        "placeholder": "{{contract.date}}"
+      }
+    ],
+    "deal": [
+      {
+        "id": "payment.form",
+        "section": "deal",
+        "label": "Форма оплаты",
+        "type": "enum",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "allowed": ["prepay", "postpay", "installments"]
+        },
+        "example": "prepay",
+        "placeholder": "{{payment.form}}"
+      },
+      {
+        "id": "deal.amount",
+        "section": "deal",
+        "label": "Сумма сделки",
+        "type": "decimal",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "min": 0.01,
+          "precision": 2
+        },
+        "example": "125000.00",
+        "placeholder": "{{deal.amount}}"
+      },
+      {
+        "id": "deal.currency",
+        "section": "deal",
+        "label": "Валюта",
+        "type": "enum",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "allowed": ["RUB", "USD", "EUR"]
+        },
+        "example": "RUB",
+        "placeholder": "{{deal.currency}}"
+      },
+      {
+        "id": "deal.subject",
+        "section": "deal",
+        "label": "Предмет договора",
+        "type": "string",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "max_length": 500
+        },
+        "example": "Поставка оборудования",
+        "placeholder": "{{deal.subject}}"
+      }
+    ],
+    "seller": [
+      {
+        "id": "seller.name_full",
+        "section": "seller",
+        "label": "Полное наименование продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "max_length": 300
+        },
+        "example": "ООО \"Ромашка\"",
+        "placeholder": "{{seller.name_full}}"
+      },
+      {
+        "id": "seller.inn",
+        "section": "seller",
+        "label": "ИНН продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "digits": [10, 12]
+        },
+        "example": "7701234567",
+        "placeholder": "{{seller.inn}}"
+      },
+      {
+        "id": "seller.kpp",
+        "section": "seller",
+        "label": "КПП продавца",
+        "type": "string",
+        "required": false,
+        "source": "profile",
+        "validation": {
+          "digits": [9]
+        },
+        "example": "770101001",
+        "placeholder": "{{seller.kpp}}"
+      },
+      {
+        "id": "seller.ogrn",
+        "section": "seller",
+        "label": "ОГРН продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "digits": [13]
+        },
+        "example": "1027700132195",
+        "placeholder": "{{seller.ogrn}}"
+      },
+      {
+        "id": "seller.bank_name",
+        "section": "seller",
+        "label": "Банк продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "max_length": 200
+        },
+        "example": "ПАО Сбербанк",
+        "placeholder": "{{seller.bank_name}}"
+      },
+      {
+        "id": "seller.bik",
+        "section": "seller",
+        "label": "БИК продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "digits": [9]
+        },
+        "example": "044525225",
+        "placeholder": "{{seller.bik}}"
+      },
+      {
+        "id": "seller.account",
+        "section": "seller",
+        "label": "Расчетный счет продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "digits": [20]
+        },
+        "example": "40702810900000000001",
+        "placeholder": "{{seller.account}}"
+      },
+      {
+        "id": "seller.corr_account",
+        "section": "seller",
+        "label": "Корреспондентский счет продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "digits": [20]
+        },
+        "example": "30101810400000000225",
+        "placeholder": "{{seller.corr_account}}"
+      },
+      {
+        "id": "seller.legal_address",
+        "section": "seller",
+        "label": "Юридический адрес продавца",
+        "type": "string",
+        "required": true,
+        "source": "profile",
+        "validation": {
+          "max_length": 500
+        },
+        "example": "125009, г. Москва, ул. Тверская, д. 1",
+        "placeholder": "{{seller.legal_address}}"
+      }
+    ],
+    "client": [
+      {
+        "id": "client.type",
+        "section": "client",
+        "label": "Тип клиента",
+        "type": "enum",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "allowed": ["ooo", "ip", "fl"]
+        },
+        "example": "ooo",
+        "placeholder": "{{client.type}}"
+      },
+      {
+        "id": "client.name_full",
+        "section": "client",
+        "label": "Полное наименование клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "max_length": 300
+        },
+        "example": "ООО \"Альфа\"",
+        "placeholder": "{{client.name_full}}"
+      },
+      {
+        "id": "client.inn",
+        "section": "client",
+        "label": "ИНН клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [10, 12]
+        },
+        "example": "7707654321",
+        "placeholder": "{{client.inn}}"
+      },
+      {
+        "id": "client.kpp",
+        "section": "client",
+        "label": "КПП клиента",
+        "type": "string",
+        "required": false,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [9],
+          "required_if": {
+            "field": "client.type",
+            "equals": "ooo"
+          }
+        },
+        "example": "770701001",
+        "placeholder": "{{client.kpp}}"
+      },
+      {
+        "id": "client.ogrn_or_ogrnip",
+        "section": "client",
+        "label": "ОГРН/ОГРНИП клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [13, 15]
+        },
+        "example": "1157746000001",
+        "placeholder": "{{client.ogrn_or_ogrnip}}"
+      },
+      {
+        "id": "client.bank_name",
+        "section": "client",
+        "label": "Банк клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "max_length": 200
+        },
+        "example": "АО Т-Банк",
+        "placeholder": "{{client.bank_name}}"
+      },
+      {
+        "id": "client.bik",
+        "section": "client",
+        "label": "БИК клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [9]
+        },
+        "example": "044525974",
+        "placeholder": "{{client.bik}}"
+      },
+      {
+        "id": "client.account",
+        "section": "client",
+        "label": "Расчетный счет клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [20]
+        },
+        "example": "40702810400000001234",
+        "placeholder": "{{client.account}}"
+      },
+      {
+        "id": "client.corr_account",
+        "section": "client",
+        "label": "Корреспондентский счет клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "digits": [20]
+        },
+        "example": "30101810145250000974",
+        "placeholder": "{{client.corr_account}}"
+      },
+      {
+        "id": "client.legal_address",
+        "section": "client",
+        "label": "Юридический адрес клиента",
+        "type": "string",
+        "required": true,
+        "source": "ocr_or_manual",
+        "validation": {
+          "max_length": 500
+        },
+        "example": "190000, г. Санкт-Петербург, Невский пр., д. 10",
+        "placeholder": "{{client.legal_address}}"
+      },
+      {
+        "id": "client.signer_fio",
+        "section": "client",
+        "label": "ФИО подписанта клиента",
+        "type": "string",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "max_length": 200
+        },
+        "example": "Иванов Иван Иванович",
+        "placeholder": "{{client.signer_fio}}"
+      },
+      {
+        "id": "client.signer_basis",
+        "section": "client",
+        "label": "Основание подписания",
+        "type": "string",
+        "required": true,
+        "source": "manual",
+        "validation": {
+          "max_length": 300
+        },
+        "example": "действует на основании Устава",
+        "placeholder": "{{client.signer_basis}}"
+      }
+    ]
+  }
+}
